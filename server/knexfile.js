@@ -1,4 +1,5 @@
 const credentials = require('./mysql_config/mysql_credentials');
+const knexSnakeCaseMappers = require('objection').knexSnakeCaseMappers;
 
 module.exports = {
   development: {
@@ -8,6 +9,7 @@ module.exports = {
       user: credentials.user,
       password: credentials.password,
       port: 8889
-    }
-  }
+    },
+    ...knexSnakeCaseMappers()
+  },
 }

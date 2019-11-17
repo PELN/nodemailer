@@ -7,9 +7,12 @@ app.use(express.json());
 // app.get('/', async (req, res) => {
 // //    res.sendFile(__dirname + '/index.html');
 // });
-
 const users = require('./routes/usersRoute.js');
 app.use(users);
+
+const emails = require('./routes/emailsRoute.js');
+app.use(emails);
+
 
 // import knex and objection libraries
 const Knex = require('knex');
