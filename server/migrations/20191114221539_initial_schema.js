@@ -10,8 +10,10 @@ exports.up = function(knex) {
         table.increments('id');
         table.integer('user_id').unsigned();
         table.foreign('user_id').references('users.id');
+        table.string('from');
+        table.string('to');
         table.string('subject');
-        table.string('message');
+        table.string('html');
     });
 };
 
