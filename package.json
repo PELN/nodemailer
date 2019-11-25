@@ -1,5 +1,5 @@
 {
-  "name": "nodemailer",
+  "name": "emailclient",
   "version": "1.0.0",
   "description": "",
   "main": "./server/app.js",

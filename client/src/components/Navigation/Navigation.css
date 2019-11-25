@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+.navBar-header {
+    width: 100%;
+    background-color: rgb(34, 79, 123);
+}
+.navBar-items{
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.h1-logo {
+    color: rgb(241, 241, 231);
+    font-size: 20px;
+    font-family: 'Josefin Sans';
+    display: flex;
+    align-items: center;
+    padding-top: 15px;
+} 
+
+.navlink{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    margin-top: 10px;
+    font-family: 'Josefin Sans';
+}
+
+.navBar-items a:hover,
+.navBar-items a:active,
+.navBar-items a.active {
+    color: rgb(245, 163, 56);
+} 
+

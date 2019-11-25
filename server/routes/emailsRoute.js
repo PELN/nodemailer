@@ -7,13 +7,14 @@ router.get('/emails', async (req, res) => {
     console.log('***** get all emails ******');
     const emails = await Email.query().select();
     res.json(emails);
+    console.log(req.body)
 });
 
 
 router.post('/emails/send', async (req, res) => {
     console.log('***** send email *******');
     console.log(req.body);
-    
+
     if(req.body.subject && req.body.message){
 
         var transporter = nodemailer.createTransport({
@@ -36,7 +37,7 @@ router.post('/emails/send', async (req, res) => {
 
         transporter.sendMail(mailOptions, function (err, info) {
             if(err)
-                console.log(err)
+                console.log(err);
             else
                 console.log(info);
         });
