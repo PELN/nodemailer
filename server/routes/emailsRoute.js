@@ -2,7 +2,7 @@ const router = require('express').Router();
 // const User = require('../models/User');
 const Email = require('../models/Email');
 const nodemailer = require('nodemailer');
-// const verify = require('../verifyToken');
+const verify = require('../verifyToken');
 
 router.get('/emails', async (req, res) => {
     console.log('***** get all emails ******');
@@ -15,7 +15,7 @@ router.get('/emails', async (req, res) => {
 });
 
 
-router.post('/emails/send', async (req, res) => {
+router.post('/emails/send', verify, async (req, res) => {
     console.log('***** send email *******');
     console.log(req.body);
 
