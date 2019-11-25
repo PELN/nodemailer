@@ -11,8 +11,8 @@ export default class Login extends React.Component {
             email: '',
             password: '',
             responseToPost: ''
-        }
-    }
+        };
+    };
 
     handleSubmit = async e => {
         e.preventDefault();
@@ -20,7 +20,7 @@ export default class Login extends React.Component {
         const password = this.state.password;
         console.log(email, password);
 
-        const response = await fetch('/users/signup', {
+        await fetch('/users/signup', {
             method: 'POST',
             body: JSON.stringify({
                 email: this.state.email, 
@@ -29,9 +29,19 @@ export default class Login extends React.Component {
             headers: {
                 'Content-Type': 'application/json',
             }
+        }).then((response) => {
+            console.log(response);
+            if (response.status === 200) {
+                console.log('successful signup')
+                this.props.history.push("/login"); // Redirect
+            } else if (response.status === 400) {
+                response.json().then(function(object){
+                    const errorMsg = object.message;
+                    console.log(errorMsg);
+                    // this.setState({responseToPost: this.state.errorMsg});
+                });
+            };
         });
-        const body = await response.text();
-        this.setState({ responseToPost: body });
     };
 
 

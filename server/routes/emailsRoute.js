@@ -2,12 +2,16 @@ const router = require('express').Router();
 // const User = require('../models/User');
 const Email = require('../models/Email');
 const nodemailer = require('nodemailer');
+// const verify = require('../verifyToken');
 
 router.get('/emails', async (req, res) => {
     console.log('***** get all emails ******');
     const emails = await Email.query().select();
-    res.json(emails);
-    console.log(req.body)
+    res.json({emails});
+
+    // var data = JSON.stringify(emails);
+
+    // res.send(req.user);
 });
 
 

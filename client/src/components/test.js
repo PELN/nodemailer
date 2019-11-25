@@ -92,3 +92,44 @@ export default class Login extends React.Component {
     );
 };
 }
+
+
+
+
+
+// ************ output json obj sent emails ****************
+// import React from 'react';
+// // import './Profile.css';
+
+// export default class SentEmails extends React.Component {
+
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             emails: {}
+//         }
+//     }
+
+//     componentDidMount() {
+//         fetch('/emails', {
+//             method: 'GET',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             }
+//         })
+//             .then(response => response.json())
+//             .then(emails => this.setState(emails));
+//             console.log(this.state.emails);
+//     };
+
+//     render() {
+
+//         return(
+//             <div>
+//                 <h2>Sent emails</h2>
+//                 {JSON.stringify(this.state.emails)}
+//             </div>
+           
+//         );
+//     };
+// };

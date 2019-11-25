@@ -1,12 +1,13 @@
 const express = require('express');
+// const session = require('express-session');
 const app = express();
+// const dotenv = require('dotenv');
+// dotenv.config();
 
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 
-// app.get('/', async (req, res) => {
-// //    res.sendFile(__dirname + '/index.html');
-// });
+
 const users = require('./routes/usersRoute.js');
 app.use(users);
 
@@ -19,10 +20,6 @@ const knexConfig = require('./knexfile');
 const Model = require('objection').Model;
 const knex = Knex(knexConfig.development);
 Model.knex(knex);
-
-// app.get('/', (req, res) => {
-//     res.sendFile(__dirname + '../../client/src/App.js');
-// });
 
 // app.get('/', (req, res) => {
 // 	res.send('PORT 5000');

@@ -21,7 +21,7 @@ export default class Login extends React.Component {
         const message = this.state.message;
         console.log(subject, message);
 
-        const response = await fetch('/emails/send', {
+        await fetch('/emails/send', {
             method: 'POST',
             body: JSON.stringify({
                 subject: this.state.subject, 
@@ -29,10 +29,21 @@ export default class Login extends React.Component {
             }),
             headers: {
                 'Content-Type': 'application/json',
+                'Accept': 'applicaton/json'
             }
+        }).then((response) => {
+            console.log(response);
+            if (response.status === 200) {
+                console.log('Email has been sent')
+                // this.props.history.push("/"); // Redirect
+            } else if (response.status === 400) {
+                response.json().then(function(object){
+                    const errorMsg = object.message;
+                    console.log(errorMsg);
+                    // this.setState({responseToPost: this.state.errorMsg});
+                });
+            };
         });
-        const body = await response.text();
-        this.setState({ responseToPost: body });
     };
 
 
@@ -45,10 +56,10 @@ export default class Login extends React.Component {
                 <form onSubmit={this.handleSubmit} method="POST">
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Subject</Form.Label>
-                        <Form.Control type="text" placeholder="subject" value={this.state.subject} onChange={e => this.setState({subject: e.target.value })}/>
+                        <Form.Control type="text" placeholder="Subject" value={this.state.subject} onChange={e => this.setState({subject: e.target.value })}/>
                     </Form.Group>
                     <Form.Group controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
+                        <Form.Label>Message</Form.Label>
                         <Form.Control type="text" placeholder="Enter message" value={this.state.message} onChange={e => this.setState({message: e.target.value })}/>
                     </Form.Group>
                     <Button variant="primary" type="submit">Send email</Button>

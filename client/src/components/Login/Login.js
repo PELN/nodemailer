@@ -1,6 +1,8 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+// import decode from 'jwt-decode';
+
 import './Login.css';
 
 export default class Login extends React.Component {
@@ -20,7 +22,7 @@ export default class Login extends React.Component {
         const password = this.state.password;
         console.log(email, password);
 
-        const response = await fetch('/users/login', {
+        await fetch('/users/login', {
             method: 'POST',
             body: JSON.stringify({
                 email: this.state.email, 
@@ -29,9 +31,19 @@ export default class Login extends React.Component {
             headers: {
                 'Content-Type': 'application/json',
             }
+        }).then((response) => {
+            console.log(response);
+            if (response.status === 200) {
+                console.log('you have been logged in')
+                this.props.history.push("/profile"); // Redirect
+            } else if (response.status === 401) {
+                response.json().then(function(object){
+                    const errorMsg = object.message;
+                    console.log(errorMsg);
+                    // this.setState({responseToPost: this.state.errorMsg});
+                });
+            };
         });
-        const body = await response.text();
-        this.setState({ responseToPost: body });
     };
 
 
