@@ -1,0 +1,12 @@
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
+
+.formContainer {
+    width: 50%;
+    margin-bottom: 20px;;
+}

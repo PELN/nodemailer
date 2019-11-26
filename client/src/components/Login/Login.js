@@ -1,8 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-// import decode from 'jwt-decode';
-
 import './Login.css';
 
 export default class Login extends React.Component {
@@ -12,7 +10,11 @@ export default class Login extends React.Component {
         this.state = {
             email: '',
             password: '',
-            responseToPost: ''
+            responseToPost: {
+                type: null,
+                message: null
+            },
+            loggedIn: ''
         }
     }
 
@@ -32,48 +34,52 @@ export default class Login extends React.Component {
                 'Content-Type': 'application/json'
             }
         }).then((response) => {
-            console.log(response);
+            // console.log(response);
             if (response.status === 200) {
                 console.log('you have been logged in')
-                // set token ??
-                console.log(response.headers.get('auth-token'));
+                // set token
                 let token = response.headers.get('auth-token');
                 localStorage.setItem('auth-token', token);
 
-                this.props.history.push("/profile"); // Redirect
+                this.setState({ loggedIn: true });
+                console.log('logged in:', this.state.loggedIn);
+                // this.props.history.push("/profile"); // Redirect
+
+                this.setState({responseToPost : {type: 'success', message: 'You have been successfully logged in!'}})
+
             } else if (response.status === 401) {
                 response.json().then(function(object){
                     const errorMsg = object.message;
-                    console.log(errorMsg);
-                    // this.setState({responseToPost: this.state.errorMsg});
+                    console.log(errorMsg);                    
                 });
+                this.setState({responseToPost : {type: 'error', message: 'Something went wrong. Please try again.'}})
             };
         });
     };
 
-    isAuthenticated() {
-        let userToken = localStorage.getItem('auth-token');
-        console.log(userToken);
-    }
-
+   
 
     render() {
+        const { responseToPost, email, password } = this.state;
+
         return(
-            <div>
+            <div>  
                 <h2>Login</h2>
-                <p>{this.state.responseToPost}</p>
-                <form onSubmit={this.handleSubmit} method="POST">
-                    <Form.Group controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" value={this.state.email} onChange={e => this.setState({email: e.target.value })}/>
-                    </Form.Group>
-                    <Form.Group controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Enter password" value={this.state.password} onChange={e => this.setState({password: e.target.value })}/>
-                    </Form.Group>
-                    <Button variant="primary" type="submit">Login</Button>
-                </form>
-                <p>Don't have an account? <a href="/signup">Sign up now</a></p>
+                <div className="formContainer">
+                    <p className={responseToPost.type}>{responseToPost.message}</p>
+                    <form onSubmit={this.handleSubmit} method="POST">
+                        <Form.Group controlId="formBasicEmail">
+                            <Form.Label>Email address</Form.Label>
+                            <Form.Control type="email" placeholder="Enter email" value={email} onChange={e => this.setState({email: e.target.value })}/>
+                        </Form.Group>
+                        <Form.Group controlId="formBasicPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" placeholder="Enter password" value={password} onChange={e => this.setState({password: e.target.value })}/>
+                        </Form.Group>
+                        <Button variant="primary" type="submit">Login</Button>
+                    </form>
+                </div>
+                <p>Don't have an account? <a href="/signup">Sign up now</a></p>                
             </div>
         );
     };

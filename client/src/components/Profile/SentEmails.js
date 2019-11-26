@@ -5,8 +5,7 @@ export default class SentEmails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            emailList: [],
-            subject: ''
+            emailList: []
         }
     }
 
@@ -22,12 +21,11 @@ export default class SentEmails extends React.Component {
         .then(
             (emails) => { 
                 this.setState({
-                    emailList: emails.emails,
-                    subject: emails.emails[0].subject
+                    emailList: emails.emails
             });
         });
         console.log(this.state.emailList);
-        console.log('subject', this.state.subject);
+        // console.log('subject', this.state.subject);
     };
 
     render() {

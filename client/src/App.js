@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
-import Home from './components/Home/Home';
 import Profile from './components/Profile/Profile';
 import Navigation from './components/Navigation/Navigation';
 import Login from './components/Login/Login';
@@ -15,15 +14,12 @@ export default function App() {
         <Navigation />
         <main>
           <Switch>
-            <Redirect from="/" to="/home" exact />
-            <Route path="/home" component={Home} />
-            <Route path="/profile" component={Profile} />
+            <Redirect from="/" to="/login" exact />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/profile" component={Profile} />
           </Switch>
         </main>
-        {/* <Login/>
-        <Signup/> */}
         </BrowserRouter>
       </div>
     );
