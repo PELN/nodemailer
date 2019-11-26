@@ -29,12 +29,17 @@ export default class Login extends React.Component {
                 password: this.state.password
             }),
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             }
         }).then((response) => {
             console.log(response);
             if (response.status === 200) {
                 console.log('you have been logged in')
+                // set token ??
+                console.log(response.headers.get('auth-token'));
+                let token = response.headers.get('auth-token');
+                localStorage.setItem('auth-token', token);
+
                 this.props.history.push("/profile"); // Redirect
             } else if (response.status === 401) {
                 response.json().then(function(object){
@@ -45,6 +50,11 @@ export default class Login extends React.Component {
             };
         });
     };
+
+    isAuthenticated() {
+        let userToken = localStorage.getItem('auth-token');
+        console.log(userToken);
+    }
 
 
     render() {

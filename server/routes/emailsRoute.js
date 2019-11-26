@@ -4,7 +4,7 @@ const Email = require('../models/Email');
 const nodemailer = require('nodemailer');
 const verify = require('../verifyToken');
 
-router.get('/emails', async (req, res) => {
+router.get('/emails', verify, async (req, res) => {
     console.log('***** get all emails ******');
     const emails = await Email.query().select();
     res.json({emails});
