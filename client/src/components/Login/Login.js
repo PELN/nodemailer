@@ -1,6 +1,7 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+// import Button from 'react-bootstrap/Button';
+// import Form from 'react-bootstrap/Form';
+import Google_login from './Google_login';
 import './Login.css';
 
 export default class Login extends React.Component {
@@ -38,8 +39,8 @@ export default class Login extends React.Component {
             if (response.status === 200) {
                 console.log('you have been logged in')
                 // set token
-                let token = response.headers.get('auth-token');
-                localStorage.setItem('auth-token', token);
+                // let token = response.headers.get('auth-token');
+                // localStorage.setItem('auth-token', token);
 
                 this.setState({ loggedIn: true });
                 console.log('logged in:', this.state.loggedIn);
@@ -57,14 +58,12 @@ export default class Login extends React.Component {
         });
     };
 
-   
-
     render() {
         const { responseToPost, email, password } = this.state;
 
         return(
-            <div>  
-                <h2>Login</h2>
+            <div>
+                {/* <h2>Login</h2>
                 <div className="formContainer">
                     <p className={responseToPost.type}>{responseToPost.message}</p>
                     <form onSubmit={this.handleSubmit} method="POST">
@@ -79,7 +78,8 @@ export default class Login extends React.Component {
                         <Button variant="primary" type="submit">Login</Button>
                     </form>
                 </div>
-                <p>Don't have an account? <a href="/signup">Sign up now</a></p>                
+                <p>Don't have an account? <a href="/signup">Sign up now</a></p> */}
+                <Google_login/>
             </div>
         );
     };

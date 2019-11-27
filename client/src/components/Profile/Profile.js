@@ -1,8 +1,8 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import './Profile.css';
-import SentEmails from './SentEmails';
+import '../Login/Profile.css';
+import SentEmails from '../Login/SentEmails';
 
 export default class Profile extends React.Component {
 
@@ -20,7 +20,7 @@ export default class Profile extends React.Component {
 
     handleSubmit = async e => {
         e.preventDefault();
-        
+
         await fetch('/emails/send', {
             method: 'POST',
             body: JSON.stringify({

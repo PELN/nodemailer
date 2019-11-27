@@ -1,7 +1,7 @@
 const router = require('express').Router();
-// const User = require('../models/User');
 const Email = require('../models/Email');
 const nodemailer = require('nodemailer');
+// const User = require('../models/User');
 // const verify = require('../middleware/verifyToken');
 
 router.get('/emails', async (req, res) => {
