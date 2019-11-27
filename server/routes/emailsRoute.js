@@ -1,17 +1,16 @@
 const router = require('express').Router();
 const Email = require('../models/Email');
 const nodemailer = require('nodemailer');
-// const User = require('../models/User');
-// const verify = require('../middleware/verifyToken');
+const withAuth = require('../middleware/verifyToken');
 
-router.get('/emails', async (req, res) => {
+
+router.get('/emails', withAuth, async (req, res) => {
     console.log('***** get all emails ******');
     const emails = await Email.query().select();
     res.json({emails});
 });
 
-
-router.post('/emails/send', async (req, res) => {
+router.post('/emails/send', withAuth, async (req, res) => {
     console.log('***** send email *******');
     console.log(req.body);
 

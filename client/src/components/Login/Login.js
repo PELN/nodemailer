@@ -37,14 +37,9 @@ export default class Login extends React.Component {
         }).then((response) => {
             // console.log(response);
             if (response.status === 200) {
-                console.log('you have been logged in')
-                // let token = response.headers.get('auth-token');
-                // localStorage.setItem('auth-token', token);
-
                 this.setState({ loggedIn: true });
                 console.log('logged in:', this.state.loggedIn);
-                // this.props.history.push("/profile"); // Redirect
-
+                this.props.history.push('/profile'); // Redirect
                 this.setState({responseToPost : {type: 'success', message: 'You have been successfully logged in!'}})
 
             } else if (response.status === 401) {

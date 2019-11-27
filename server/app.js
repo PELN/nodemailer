@@ -2,10 +2,13 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
+const cookieParser = require('cookie-parser');
+const withAuth = require('./middleware/verifyToken');
 
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 
+app.use(cookieParser());
 
 const users = require('./routes/usersRoute.js');
 app.use(users);
@@ -24,6 +27,14 @@ Model.knex(knex);
 // 	res.send('PORT 5000');
 // });
 
+app.get('/profile', withAuth, function(req, res) {
+    res.send('Welcome!');
+});
+
+app.get('/checkToken', withAuth, function(req, res) {
+    res.sendStatus(200);
+});
+  
 const server = app.listen(5000, (error) => {
     if(error) {
         console.log(error);
