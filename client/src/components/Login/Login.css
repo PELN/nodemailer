@@ -1,6 +1,6 @@
 .formContainer {
-    width: 70%;
-    margin-bottom: 20px;;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .success {
@@ -9,4 +9,17 @@
 
 .error {
     color: red;
+}
+
+.loginContainer{
+    padding: 4%;
+    display: flex;
+    justify-content: center;
+}
+
+.loginBox{
+    padding: 30px;
+    background-color: rgb(235, 232, 232);
+    border-radius: 15px;
+    width: 40vw;
 }

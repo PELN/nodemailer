@@ -52,9 +52,8 @@ export default class SendEmail extends React.Component {
 
         return(
             <div>
-                <div className="emailFormContainer">
-                    <h3>Send an email</h3>
-                    <p className={responseToPost.type}>{responseToPost.message}</p>
+                <h3>Send an email</h3>
+                <p className={responseToPost.type}>{responseToPost.message}</p>
                     <form onSubmit={this.handleSubmit} method="POST">
                         <Form.Group>
                             <Form.Label>Subject</Form.Label>
@@ -66,9 +65,7 @@ export default class SendEmail extends React.Component {
                         </Form.Group>
                         <Button variant="primary" type="submit">Send email</Button>
                     </form>
-                </div>
             </div>
-            
         );
     };
 };

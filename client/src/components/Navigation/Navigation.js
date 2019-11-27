@@ -4,6 +4,7 @@ import './Navigation.css';
 // import 'font-awesome/css/font-awesome.min.css';
 
 export default function Navigation() {
+
     return(
         <header className="navBar-header">
             <div className="navBar-items">
@@ -11,7 +12,7 @@ export default function Navigation() {
                 {/* <NavLink to="/" className="navlink">Home</NavLink> */}
                 {/* <NavLink to="/secret" className="navlink">Secret</NavLink> */}
                 <NavLink to="/login" className="navlink">Login</NavLink>
-                <NavLink to="/signup" className="navlink">Signup</NavLink>
+                {/* <NavLink to="/signup" className="navlink">Signup</NavLink> */}
                 <NavLink to="/profile" className="navlink">Profile</NavLink>
             </div>
         </header>

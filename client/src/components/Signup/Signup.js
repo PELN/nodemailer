@@ -53,25 +53,26 @@ export default class Signup extends React.Component {
     render() {
         const { responseToPost, email, password } = this.state;
         return(
-            <div>
-                <h2>Signup</h2>
-                <div className="formContainer">
-                    <p className={responseToPost.type}>{responseToPost.message}</p>
-                    <form onSubmit={this.handleSubmit} method="POST">
-                        <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email" value={email} onChange={e => this.setState({email: e.target.value })}/>
-                        </Form.Group>
-                        <Form.Group controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Enter password" value={password} onChange={e => this.setState({password: e.target.value })}/>
-                        </Form.Group>
-                        <Button variant="primary" type="submit">Signup</Button>
-                    </form>
+            <div className="signupContainer">
+                <div className="signupBox">
+                    <h2>Signup</h2>
+                    <div className="formContainer">
+                        <p className={responseToPost.type}>{responseToPost.message}</p>
+                        <form onSubmit={this.handleSubmit} method="POST">
+                            <Form.Group controlId="formBasicEmail">
+                                <Form.Label>Email address</Form.Label>
+                                <Form.Control type="email" placeholder="Enter email" value={email} onChange={e => this.setState({email: e.target.value })}/>
+                            </Form.Group>
+                            <Form.Group controlId="formBasicPassword">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control type="password" placeholder="Enter password" value={password} onChange={e => this.setState({password: e.target.value })}/>
+                            </Form.Group>
+                            <Button variant="primary" type="submit">Signup</Button>
+                        </form>
+                    </div>
+                    <p>Already have an account? <a href="/login">Log in</a></p>
                 </div>
-                <p>Already have an account? <a href="/login">Log in</a></p>
             </div>
-            
         );
     };
 }

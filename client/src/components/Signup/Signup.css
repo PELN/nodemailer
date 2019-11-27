@@ -7,6 +7,19 @@
 }
 
 .formContainer {
-    width: 50%;
-    margin-bottom: 20px;;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.signupContainer{
+    padding: 4%;
+    display: flex;
+    justify-content: center;
+}
+
+.signupBox{
+    padding: 30px;
+    background-color: rgb(235, 232, 232);
+    border-radius: 15px;
+    width: 40vw;
 }

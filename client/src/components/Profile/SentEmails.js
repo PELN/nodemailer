@@ -1,4 +1,5 @@
 import React from 'react';
+import './Profile.css';
 
 export default class SentEmails extends React.Component {
 
@@ -32,16 +33,18 @@ export default class SentEmails extends React.Component {
         
         return(
             <div className="emailContainer">
-                <h2>Sent emails</h2>               
-                {this.state.emailList.map(email =>
-                    <div>
-                        <hr/>
-                        <h5>Subject: {email.subject}</h5>
-                        <p>To: {email.to}</p>
-                        <p>From: {email.from}</p>
-                        <p>Message:<br/> {email.html}</p>
-                    </div>
-                )}
+                <h2>Sent emails</h2>
+                <div className="email">     
+                    {this.state.emailList.map(email =>
+                        <div>
+                            <hr/>
+                            <h5>Subject: {email.subject}</h5>
+                            <p>To: {email.to}</p>
+                            <p>From: {email.from}</p>
+                            <p className="messageBox">Message:<br/> {email.html}</p>
+                        </div>
+                    )}
+                </div> 
             </div>
            
         );

@@ -29,6 +29,7 @@ Model.knex(knex);
 
 app.get('/profile', withAuth, function(req, res) {
     res.send('Welcome!');
+    
 });
 
 app.get('/checkToken', withAuth, function(req, res) {

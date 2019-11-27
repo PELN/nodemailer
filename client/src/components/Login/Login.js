@@ -14,16 +14,12 @@ export default class Login extends React.Component {
             responseToPost: {
                 type: null,
                 message: null
-            },
-            loggedIn: ''
+            }
         }
     }
 
     handleSubmit = async e => {
         e.preventDefault();
-        const email = this.state.email;
-        const password = this.state.password;
-        console.log(email, password);
 
         await fetch('/users/login', {
             method: 'POST',
@@ -37,8 +33,6 @@ export default class Login extends React.Component {
         }).then((response) => {
             // console.log(response);
             if (response.status === 200) {
-                this.setState({ loggedIn: true });
-                console.log('logged in:', this.state.loggedIn);
                 this.props.history.push('/profile'); // Redirect
                 this.setState({responseToPost : {type: 'success', message: 'You have been successfully logged in!'}})
 
@@ -56,24 +50,26 @@ export default class Login extends React.Component {
         const { responseToPost, email, password } = this.state;
 
         return(
-            <div>
-                <h2>Login</h2>
-                <div className="formContainer">
-                    <p className={responseToPost.type}>{responseToPost.message}</p>
-                    <form onSubmit={this.handleSubmit} method="POST">
-                        <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email" value={email} onChange={e => this.setState({email: e.target.value })}/>
-                        </Form.Group>
-                        <Form.Group controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Enter password" value={password} onChange={e => this.setState({password: e.target.value })}/>
-                        </Form.Group>
-                        <Button variant="primary" type="submit">Login</Button>
-                    </form>
+            <div className="loginContainer">
+                <div className="loginBox">
+                    <h2>Login</h2>
+                    <div className="formContainer">
+                        <LoginGoogle/>
+                        <p className={responseToPost.type}>{responseToPost.message}</p>
+                        <form onSubmit={this.handleSubmit} method="POST">
+                            <Form.Group controlId="formBasicEmail">
+                                <Form.Label>Email address</Form.Label>
+                                <Form.Control type="email" placeholder="Enter email" value={email} onChange={e => this.setState({email: e.target.value })}/>
+                            </Form.Group>
+                            <Form.Group controlId="formBasicPassword">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control type="password" placeholder="Enter password" value={password} onChange={e => this.setState({password: e.target.value })}/>
+                            </Form.Group>
+                            <Button variant="primary" type="submit">Login</Button>
+                        </form>
+                    </div>
+                    <p>Don't have an account? <a href="/signup">Sign up now</a></p>
                 </div>
-                <p>Don't have an account? <a href="/signup">Sign up now</a></p>
-                <LoginGoogle/>
             </div>
         );
     };
