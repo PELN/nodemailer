@@ -1,12 +1,9 @@
 import React from 'react';
 import GoogleLogin from 'react-google-login';
 import config from '../../config';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import './Profile.css';
-import SentEmails from './SentEmails';
+import Profile from '../Profile/Profile';
 
-export default class Google_login extends React.Component {
+export default class LoginGoogle extends React.Component {
 
     constructor(props) {
         super(props);
@@ -15,13 +12,7 @@ export default class Google_login extends React.Component {
             userID: '',
             name: '',
             email: '',
-            picture: '',
-            subject: '',
-            html: '',
-            responseToPost: {
-                type: null,
-                message: null
-            }
+            picture: ''
         };
     };
 
@@ -71,38 +62,16 @@ export default class Google_login extends React.Component {
     };
 
     render() {
-        const { responseToPost, subject, message } = this.state;
-
         let googleContent;  
         if(this.state.isLoggedIn) {
             googleContent = (
                 <div className="profileContainer">
-                    <img src={this.state.picture} alt={this.state.name}/>
-                    <h2>Welcome {this.state.name}</h2>
-                    <p>With email: {this.state.email}</p>
-
-                    <div>
-                        <h2>Profile page</h2>
-                        <div className="emailFormContainer">
-                            <h3>Send an email</h3>
-                            <p className={responseToPost.type}>{responseToPost.message}</p>
-                            <form onSubmit={this.handleSubmit} method="POST">
-                                <Form.Group>
-                                    <Form.Label>Subject</Form.Label>
-                                    <Form.Control type="text" placeholder="Subject" value={subject} onChange={e => this.setState({subject: e.target.value })}/>
-                                </Form.Group>
-                                <Form.Group>
-                                    <Form.Label>Message</Form.Label>
-                                    <Form.Control as="textarea" rows="7" type="textarea" placeholder="Enter message" value={message} onChange={e => this.setState({message: e.target.value })}/>
-                                </Form.Group>
-                                <Button variant="primary" type="submit">Send email</Button>
-                            </form>
-                        </div>
-                        <div className="sentEmailsContainer">
-                            <SentEmails/>
-                        </div>
+                    <div className="profileinfo">
+                        <img src={this.state.picture} alt={this.state.name}/>
+                        <h2>Welcome, {this.state.name}</h2>
+                        <h5>With the email: {this.state.email}</h5>
                     </div>
-
+                    <Profile/>
                 </div>
             );
         } else {
@@ -121,6 +90,6 @@ export default class Google_login extends React.Component {
            <div className="GoogleContainer">
                {googleContent}
            </div>
-        )
-    }
-}
+        );
+    };
+};

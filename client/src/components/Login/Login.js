@@ -1,7 +1,7 @@
 import React from 'react';
-// import Button from 'react-bootstrap/Button';
-// import Form from 'react-bootstrap/Form';
-import Google_login from './Google_login';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import LoginGoogle from './LoginGoogle';
 import './Login.css';
 
 export default class Login extends React.Component {
@@ -38,7 +38,6 @@ export default class Login extends React.Component {
             // console.log(response);
             if (response.status === 200) {
                 console.log('you have been logged in')
-                // set token
                 // let token = response.headers.get('auth-token');
                 // localStorage.setItem('auth-token', token);
 
@@ -63,7 +62,7 @@ export default class Login extends React.Component {
 
         return(
             <div>
-                {/* <h2>Login</h2>
+                <h2>Login</h2>
                 <div className="formContainer">
                     <p className={responseToPost.type}>{responseToPost.message}</p>
                     <form onSubmit={this.handleSubmit} method="POST">
@@ -78,8 +77,8 @@ export default class Login extends React.Component {
                         <Button variant="primary" type="submit">Login</Button>
                     </form>
                 </div>
-                <p>Don't have an account? <a href="/signup">Sign up now</a></p> */}
-                <Google_login/>
+                <p>Don't have an account? <a href="/signup">Sign up now</a></p>
+                <LoginGoogle/>
             </div>
         );
     };

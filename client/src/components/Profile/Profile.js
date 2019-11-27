@@ -1,8 +1,8 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import '../Login/Profile.css';
-import SentEmails from '../Login/SentEmails';
+import './Profile.css';
+import SentEmails from './SentEmails';
 
 export default class Profile extends React.Component {
 

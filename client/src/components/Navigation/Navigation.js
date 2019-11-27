@@ -8,9 +8,9 @@ export default function Navigation() {
         <header className="navBar-header">
             <div className="navBar-items">
                 <h1 className="h1-logo">NODEMAILER</h1>
-                {/* <NavLink to="/login" className="navlink">Login</NavLink> */}
-                {/* <NavLink to="/signup" className="navlink">Signup</NavLink> */}
-                {/* <NavLink to="/profile" className="navlink">Profile</NavLink> */}
+                <NavLink to="/login" className="navlink">Login</NavLink>
+                <NavLink to="/signup" className="navlink">Signup</NavLink>
+                <NavLink to="/profile" className="navlink">Profile</NavLink>
             </div>
         </header>
     );
