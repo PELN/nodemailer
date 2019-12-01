@@ -16,9 +16,8 @@ class User extends Model {
                     to: 'emails.userId'
                 }
             }
-        }
-    }
-
+        };
+    };
 };
 
 module.exports = User;

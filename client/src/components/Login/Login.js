@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import LoginGoogle from './LoginGoogle';
+// import LoginGoogle from './LoginGoogle';
 import './Login.css';
 
 export default class Login extends React.Component {
@@ -15,8 +15,8 @@ export default class Login extends React.Component {
                 type: null,
                 message: null
             }
-        }
-    }
+        };
+    };
 
     handleSubmit = async e => {
         e.preventDefault();
@@ -54,7 +54,7 @@ export default class Login extends React.Component {
                 <div className="loginBox">
                     <h2>Login</h2>
                     <div className="formContainer">
-                        <LoginGoogle/>
+                        {/* <LoginGoogle/> */}
                         <p className={responseToPost.type}>{responseToPost.message}</p>
                         <form onSubmit={this.handleSubmit} method="POST">
                             <Form.Group controlId="formBasicEmail">
@@ -73,4 +73,4 @@ export default class Login extends React.Component {
             </div>
         );
     };
-}
+};

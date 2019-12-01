@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
- const withAuth = function (req, res, next) {
+const withAuth = function (req, res, next) {
     const token = req.cookies.token;
 
     if (!token) {
@@ -12,9 +12,9 @@ const jwt = require('jsonwebtoken');
             } else {
                 req.email = decoded.email;
                 next();
-            }
+            };
         });
-    }
-}
+    };
+};
 
 module.exports = withAuth;

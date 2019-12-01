@@ -7,8 +7,8 @@ export default class SentEmails extends React.Component {
         super(props);
         this.state = {
             emailList: []
-        }
-    }
+        };
+    };
 
     async componentDidMount() {
         await fetch('/emails', {
@@ -26,7 +26,6 @@ export default class SentEmails extends React.Component {
             });
         });
         console.log(this.state.emailList);
-        // console.log('subject', this.state.subject);
     };
 
     render() {
@@ -46,7 +45,6 @@ export default class SentEmails extends React.Component {
                     )}
                 </div> 
             </div>
-           
         );
     };
 };

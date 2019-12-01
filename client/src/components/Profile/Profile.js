@@ -10,34 +10,34 @@ export default function Profile() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-        return(
-            <div className="profileContainer">
-                <div className="left">
-                    <h2>Profile</h2>
-                    <div className="emailFormContainer">
-                        <Button className="emailBtn" variant="primary" onClick={handleShow}>
-                            Compose new email
+    return(
+        <div className="profileContainer">
+            <div className="left">
+                <h2>Profile</h2>
+                <div className="emailFormContainer">
+                    <Button className="emailBtn" variant="primary" onClick={handleShow}>
+                        Compose new email
+                    </Button>
+
+                    <Modal show={show} onHide={handleClose}>
+                        <Modal.Body>
+                            <SendEmail/>
+                        </Modal.Body>
+
+                        <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
                         </Button>
-
-                        <Modal show={show} onHide={handleClose}>
-                            <Modal.Body>
-                                <SendEmail/>
-                            </Modal.Body>
-
-                            <Modal.Footer>
-                            <Button variant="secondary" onClick={handleClose}>
-                                Close
-                            </Button>
-                            </Modal.Footer>
-                        </Modal>
-                    </div>
+                        </Modal.Footer>
+                    </Modal>
                 </div>
-                <div className="right">
-                    <div className="sentEmailsContainer">
-                        <SentEmails/>
-                    </div>
+            </div>
+            <div className="right">
+                <div className="sentEmailsContainer">
+                    <SentEmails/>
                 </div>
-            </div>  
-        );
-    };
+            </div>
+        </div>  
+    );
+};
 

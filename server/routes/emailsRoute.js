@@ -2,12 +2,12 @@ const router = require('express').Router();
 const Email = require('../models/Email');
 const nodemailer = require('nodemailer');
 const withAuth = require('../middleware/verifyToken');
-
+// const googleAuth = require('../middleware/googleVerify');
 
 router.get('/emails', withAuth, async (req, res) => {
     console.log('***** get all emails ******');
     const emails = await Email.query().select();
-    res.json({emails});
+    res.json({ emails });
 });
 
 router.post('/emails/send', withAuth, async (req, res) => {
@@ -15,7 +15,6 @@ router.post('/emails/send', withAuth, async (req, res) => {
     console.log(req.body);
 
     if(req.body.subject && req.body.message){
-
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -30,7 +29,6 @@ router.post('/emails/send', withAuth, async (req, res) => {
             subject: req.body.subject, // Subject line
             html: req.body.message // plain text body
         };
-        
         const email = await Email.query().insert(mailOptions);
         res.status(200).json({ message: email });
 
@@ -40,11 +38,9 @@ router.post('/emails/send', withAuth, async (req, res) => {
             else
                 console.log(info);
         });
-    
     } else {
         res.status(400).json({ message: "something is missing" });
-    }
-
+    };
 });
 
 

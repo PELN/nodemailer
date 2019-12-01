@@ -10,6 +10,7 @@ app.use(express.json());
 
 app.use(cookieParser());
 
+// routes
 const users = require('./routes/usersRoute.js');
 app.use(users);
 
@@ -23,13 +24,8 @@ const Model = require('objection').Model;
 const knex = Knex(knexConfig.development);
 Model.knex(knex);
 
-// app.get('/', (req, res) => {
-// 	res.send('PORT 5000');
-// });
-
 app.get('/profile', withAuth, function(req, res) {
     res.send('Welcome!');
-    
 });
 
 app.get('/checkToken', withAuth, function(req, res) {

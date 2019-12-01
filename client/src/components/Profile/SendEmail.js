@@ -14,8 +14,8 @@ export default class SendEmail extends React.Component {
                 type: null,
                 message: null
             }
-        }
-    }
+        };
+    };
 
     handleSubmit = async e => {
         e.preventDefault();
