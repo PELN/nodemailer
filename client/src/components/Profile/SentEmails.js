@@ -6,7 +6,8 @@ export default class SentEmails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            emailList: []
+            emailList: [],
+            isLoaded: false,
         };
     };
 
@@ -22,29 +23,35 @@ export default class SentEmails extends React.Component {
         .then(
             (emails) => { 
                 this.setState({
-                    emailList: emails.emails
+                    emailList: emails.emails,
+                    isLoaded: true
             });
         });
         console.log(this.state.emailList);
     };
 
     render() {
+        const { isLoaded, emailList } = this.state;
         
-        return(
-            <div className="emailContainer">
-                <h2>Sent emails</h2>
-                <div className="email">     
-                    {this.state.emailList.map(email =>
-                        <div>
-                            <hr/>
-                            <h5>Subject: {email.subject}</h5>
-                            <p>To: {email.to}</p>
-                            <p>From: {email.from}</p>
-                            <p className="messageBox">Message:<br/> {email.html}</p>
-                        </div>
-                    )}
-                </div> 
-            </div>
-        );
+        if (!isLoaded) {
+            return <div>Loading...</div>;
+        } else {     
+            return(
+                <div className="emailContainer">
+                    <h2>Sent emails</h2>
+                    <div className="email">     
+                        {emailList.map(email =>
+                            <div>
+                                <hr/>
+                                <h5>Subject: {email.subject}</h5>
+                                <p>To: {email.to}</p>
+                                <p>From: {email.from}</p>
+                                <p className="messageBox">Message:<br/> {email.html}</p>
+                            </div>
+                        )}
+                    </div> 
+                </div>
+            );
+        }
     };
 };

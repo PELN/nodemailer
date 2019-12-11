@@ -5,6 +5,9 @@ dotenv.config();
 const cookieParser = require('cookie-parser');
 const withAuth = require('./middleware/verifyToken');
 
+// const server = require("http").createServer(app);
+// const io = require("socket.io")(server);
+
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 
@@ -31,8 +34,10 @@ app.get('/profile', withAuth, function(req, res) {
 app.get('/checkToken', withAuth, function(req, res) {
     res.sendStatus(200);
 });
-  
-const server = app.listen(5000, (error) => {
+
+
+// server.listen(5000, (error) => {
+const server = app.listen(5000, (error) => {
     if(error) {
         console.log(error);
     }
