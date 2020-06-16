@@ -19,7 +19,7 @@ router.post('/emails/send', withAuth, async (req, res) => {
             service: 'gmail',
             auth: {
                 user: 'peryagtest@gmail.com',
-                pass: 'peryag888'
+                pass: ''
             }
         });
         
